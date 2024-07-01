@@ -87,15 +87,23 @@ function Set-CcmexecService {
 		}
 	}
 	
-	function Do-Stuff {
-		$params = @{
-			Queries = $Queries
-		}
+	function Get-Comps {
+		$params = @{}
 		if($SearchBase) { $params.SearchBase = $SearchBase }
-		$comps = Get-AdComputerName @params | Sort
 		
-		if(-not $comps) { Throw "No matching computers found in AD!" }
+		$compObjects = @()
+		foreach($query in @($Queries)) {
+			$results = Get-ADComputer -Filter "name -like `"$query`"" -Properties * @params
+			$compObjects += @($results)
+		}
+		if(-not $compObjects) { Throw "No matching computers found in AD!" }
+		if($compObjects.count -lt 1) { Throw "No matching computers found in AD!" }
 		
+		$compObjects | Select -ExpandProperty "Name" | Sort
+	}
+	
+	function Do-Stuff {
+		$comps = Get-Comps
 		$compsString = $comps -join ", "
 		log "Computers: $compsString"
 		
