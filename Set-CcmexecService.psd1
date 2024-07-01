@@ -9,7 +9,7 @@
 @{
 
 	# Script module or binary module file associated with this manifest.
-	# RootModule = 'Set-CcmexecService.psm1'
+	RootModule = 'Set-CcmexecService'
 
 	# Version number of this module.
 	ModuleVersion = '1.0.0'
