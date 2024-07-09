@@ -49,34 +49,36 @@ Set-CcmexecService -Queries "COMP-101-01" -StatusAction "Stop" -StartMode "Disab
 
 ### Queries \<string[]\>
 Mandatory string array.  
-WIP  
+One or more wildcard query strings.  
+Matched computers will be acted upon.  
 
 ### StatusAction \<string\>
 Mandatory string.  
-WIP  
+The action to take upon the CcmExec service.  
 Must be either `Start`, or `Stop`.  
 
 ### StartMode \<string\>
 Mandatory string.  
-WIP  
-Supported values are:  
-WIP  
+The value to which to set the CcmExec service's "StartMode" (a.k.a. StartType, a.k.a. StartupType).  
+Supported values are documented here: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/set-service?view=powershell-7.4#-startuptype
 
 ### SearchBase \<string\>
 Optional string.  
-WIP  
+The DistinguishedName of an Active Directory OU within which to limit the search query defined by `-Queries`.  
 
 ### ThrottleLimit \<int\>
 Optional integer.  
-WIP  
+The maximum number of target computers to act upon at once.  
+Default is `50`.  
 
 ### ReportOnly
 Optional switch.  
-WIP  
+When specified, the module will make no changes to the target computers, and will only return information about the current state of the CcmExec service.  
+When omitted, the user will be prompted to confirm before taking actions. If the prompt is denied, then the module continues as if `-ReportOnly` was specified.  
 
 ### PassThru
 Optional switch.  
-WIP  
+If specified, all of the data gathered is output as a proper PowerShell object, instead of as a curated, pre-formatted table.  
 
 # Notes
 - By mseng3. See my other projects here: https://github.com/mmseng/code-compendium.

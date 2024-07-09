@@ -197,11 +197,9 @@ function Set-CcmexecService {
 		}
 		
 		$results = Translate-Results $results
-		
 		$results = $results | Sort Computer
-		$results | Select Computer,Error,TaskStatus1,ServiceStatus1,ServiceStartMode1,TaskStatus2,ServiceStatus2,ServiceStartMode2,ErrorMsg | Format-Table
-		
 		if($PassThru) { $results }
+		else { $results | Select Computer,Error,TaskStatus1,ServiceStatus1,ServiceStartMode1,TaskStatus2,ServiceStatus2,ServiceStartMode2,ErrorMsg | Format-Table }
 	}
 	
 	Do-Stuff
